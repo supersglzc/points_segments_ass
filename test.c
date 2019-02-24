@@ -55,11 +55,27 @@ int main() {
 			print_array_2D(segments, s, 2);
 			print_array(points, p);
 			//TODO: pass s, p, segments, and points to your two algorithms
-			//the output should be an array of size p containing 
-			//-for each point- the number of covering segments 
+			int naive_counts[p];
+			naive_method(segments, points, s, p, naive_counts);
+			printf("Naive method result: ");
+			print_array(naive_counts, p);
+			int quick_counts[p];
+			quick_method(segments, points, s, p, quick_counts);
+			printf("Quick sort method result: ");
+			print_array(quick_counts, p);
 			
-			//TODO: implement - compare these outputs from 2 algorithms
-			
+			int a = 0;
+			for(int i = 0; i < p; i ++){
+				if(quick_counts[i] != naive_counts[i]){
+					a = 1;
+					break;
+				}
+			}	 
+			if (a == 1){
+				printf("Error, two results are different\n");
+			}else{
+				printf("OK\n");
+			}
 		}
 		fclose(pfile);
 	}
